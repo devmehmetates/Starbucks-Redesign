@@ -443,6 +443,126 @@ struct PreparingView: View{
     }
 }
 
+struct PlusButtonWithShadow : View{
+    var body: some View{
+        Button {
+            
+        } label: {
+            ZStack{
+                Circle()
+                    .frame(width: 50, height: 50, alignment: .center)
+                    .foregroundColor(Color("Primary-A"))
+                Image(systemName: "plus")
+                    .foregroundColor(.white)
+            }.shadow(radius: 3,y: 3)
+        }
+    }
+}
+
+struct CoupTallButton : View{
+    @Binding var selectedSize : String
+    var title : String
+    var coupSize = ["T":25.0,"G":30.0,"V":35.0]
+    var isSelected : Bool{
+        return title == selectedSize
+    }
+    var body: some View{
+        Button {
+            selectedSize = self.title
+        } label: {
+            ZStack(alignment:.bottom){
+                RoundedRectangle(cornerRadius: 4)
+                    .frame(width: 40, height: 40, alignment: .center)
+                    .foregroundColor(self.isSelected ? Color("Primary-B").opacity(0.5) : Color("ButtonGrey"))
+                    .overlay(RoundedRectangle(cornerRadius: 4)
+                                .stroke(lineWidth: 2)
+                                .frame(width: 40, height: 40, alignment: .center)
+                                .foregroundColor(self.isSelected ? Color("Primary-B") : .gray))
+                Image("coup")
+                    .resizable()
+                    .frame(width: CGFloat(self.coupSize[self.title]!), height: CGFloat(self.coupSize[self.title]!), alignment: .center)
+                    .overlay(Text(self.title))
+                    .foregroundColor(Color("Primary-B"))
+                    .padding(.bottom,3)
+            }
+        }
+
+    }
+}
+
+struct CustomInput : View{
+    @Binding var email : String
+    var body: some View{
+        VStack{
+            HStack{
+                TextField("Email", text: self.$email)
+            }.padding()
+                .background(RoundedRectangle(cornerRadius: 5).foregroundColor(.white))
+                .overlay(RoundedRectangle(cornerRadius: 5).stroke(.gray))
+        }.padding(.horizontal)
+    }
+}
+struct CustomPasswordInput : View{
+    @State var isHide = false
+    @Binding var password : String
+    var body: some View{
+        ZStack{
+            if self.isHide{
+                HStack{
+                    SecureField("Password", text: self.$password)
+                }.padding()
+                    .background(RoundedRectangle(cornerRadius: 5).foregroundColor(.white))
+                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(.gray))
+                
+            }else{
+                HStack{
+                    TextField("Password", text: self.$password)
+                }.padding()
+                    .background(RoundedRectangle(cornerRadius: 5).foregroundColor(.white))
+                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(.gray))
+                
+            }
+            HStack{
+                Spacer()
+                Button {
+                    self.isHide.toggle()
+                } label: {
+                    Image(systemName: self.isHide ? "eye.slash" : "eye")
+                        .padding(.trailing)
+                }.foregroundColor(.primary)
+            }
+        }.padding(.horizontal)
+    }
+}
+
+struct CatagoriesButton : View{
+    var title : String
+    var body: some View{
+        Button {
+            
+        } label: {
+            Text(title)
+                .padding()
+                .background(RoundedRectangle(cornerRadius: 5).foregroundColor(Color("ButtonGrey")))
+        }
+    }
+}
+struct CatagoriesScrool : View{
+    var catagories = ["Çok Satanlar","Kahve" ,"Yemek" , "İçecek"]
+    var body: some View{
+        ScrollView(.horizontal,showsIndicators: false){
+            HStack{
+                ForEach(self.catagories,id: \.self){ title in
+                    
+                    CatagoriesButton(title: title)
+                }
+            }
+        }
+    }
+}
+
+
+
 struct ProgressBar : View{
     @Binding var isStared : Bool
     var body: some View{
@@ -490,6 +610,10 @@ struct AllButton_View : View{
 }
 
 struct ComponentsView : View{
+    @State var selectedSize = "G"
+    let coupleSizes = ["T","G","V"]
+    @State var email = ""
+    @State var password = ""
     var body: some View{
         ScrollView{
            MoneyCard()
@@ -499,7 +623,19 @@ struct ComponentsView : View{
             }
             BestSeller()
 //            CoffeeWin()
-            OrderPrepearing()
+//            OrderPrepearing()
+            HStack{
+                PlusButtonWithShadow()
+                ForEach(self.coupleSizes,id:\.self){a in
+                    CoupTallButton(selectedSize: self.$selectedSize,title: a)
+                }
+                
+            }
+            VStack{
+                CustomInput(email: self.$email)
+                CustomPasswordInput(password: self.$password)
+            }
+            CatagoriesScrool()
         }
     }
 }
