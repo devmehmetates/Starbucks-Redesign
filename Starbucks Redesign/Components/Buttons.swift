@@ -536,27 +536,109 @@ struct CustomPasswordInput : View{
 }
 
 struct CatagoriesButton : View{
+    @Binding var selectedTitle : String
     var title : String
+    var isSelected : Bool {
+        return self.selectedTitle == self.title
+    }
     var body: some View{
         Button {
-            
+            withAnimation{
+                self.selectedTitle = self.title
+            }
         } label: {
-            Text(title)
-                .padding()
-                .background(RoundedRectangle(cornerRadius: 5).foregroundColor(Color("ButtonGrey")))
+            if self.isSelected{
+                Text(title)
+                    .foregroundColor(.black)
+                    .padding()
+                    .background(RoundedRectangle(cornerRadius: 5).foregroundColor(Color("ButtonGrey")))
+            }else{
+                Text(title)
+                    .foregroundColor(.black)
+                    .padding()
+                    .background(RoundedRectangle(cornerRadius: 5).stroke().foregroundColor(Color("ButtonGrey")))
+            }
         }
     }
 }
 struct CatagoriesScrool : View{
+    @State private var selectedCat = "Çok Satanlar"
     var catagories = ["Çok Satanlar","Kahve" ,"Yemek" , "İçecek"]
     var body: some View{
         ScrollView(.horizontal,showsIndicators: false){
             HStack{
                 ForEach(self.catagories,id: \.self){ title in
-                    
-                    CatagoriesButton(title: title)
+                    CatagoriesButton(selectedTitle: self.$selectedCat, title: title)
                 }
             }
+        }.padding(.horizontal)
+    }
+}
+
+
+struct PlusOrLessButton : View{
+    @Binding var howMuch : Int
+    var title : String
+    var body: some View{
+        Button {
+            if title == "-"{
+                if howMuch > 0{
+                    self.howMuch -= 1
+                }else{
+                    howMuch = 0
+                }
+               
+            }else{
+                self.howMuch += 1
+            }
+            
+        } label: {
+            if title == "-"{
+                Text(title).foregroundColor(.black)
+                    .font(.title)
+                    .frame(width: 35, height: 35, alignment: .center)
+                    .background(Rectangle().cornerRadius(5,corners: [.topLeft,.bottomLeft]))
+                
+            }else{
+                Text(title).foregroundColor(.black)
+                    .font(.title)
+                    .frame(width: 35, height: 35, alignment: .center)
+                    .background(Rectangle().cornerRadius(5,corners: [.topRight,.bottomRight]))
+            }
+        }.foregroundColor(Color("ButtonGrey"))
+    }
+}
+
+
+extension View {
+    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
+        clipShape( RoundedCorner(radius: radius, corners: corners) )
+    }
+}
+
+struct RoundedCorner: Shape {
+    
+    var radius: CGFloat = .infinity
+    var corners: UIRectCorner = .allCorners
+    
+    func path(in rect: CGRect) -> Path {
+        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        return Path(path.cgPath)
+    }
+}
+
+struct HowMuchCoffee : View{
+    @State private var howMuch = 0
+    var body: some View{
+        HStack(spacing:0){
+            PlusOrLessButton(howMuch: self.$howMuch, title: "-")
+            
+            Text(String(howMuch))
+                .font(.title2)
+                .frame(width: 35, height: 35, alignment: .center)
+                .background(RoundedRectangle(cornerRadius: 0).foregroundColor(Color("ButtonGrey")))
+            
+            PlusOrLessButton(howMuch: self.$howMuch, title: "+")
         }
     }
 }
@@ -636,6 +718,10 @@ struct ComponentsView : View{
                 CustomPasswordInput(password: self.$password)
             }
             CatagoriesScrool()
+            HStack{
+                HowMuchCoffee()
+                Spacer()
+            }.padding(.horizontal)
         }
     }
 }
