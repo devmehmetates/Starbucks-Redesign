@@ -11,6 +11,8 @@
 		2E2D79B6276617CE0022EA75 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E2D79B5276617CE0022EA75 /* Assets.xcassets */; };
 		2E2D79B9276617CE0022EA75 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E2D79B8276617CE0022EA75 /* Preview Assets.xcassets */; };
 		2E2D79C227661C6B0022EA75 /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2D79C127661C6B0022EA75 /* LoginScreen.swift */; };
+		2E8AF9B327909A3A00140E78 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8AF9B227909A3A00140E78 /* HomeView.swift */; };
+		2E8AF9B527909B0E00140E78 /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8AF9B427909B0E00140E78 /* HomePage.swift */; };
 		2E9BCEF22768869C009BB180 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9BCEF12768869C009BB180 /* Buttons.swift */; };
 		2EA446C5276622460059F045 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EA446C4276622460059F045 /* SplashScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -21,6 +23,8 @@
 		2E2D79B5276617CE0022EA75 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2E2D79B8276617CE0022EA75 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2E2D79C127661C6B0022EA75 /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
+		2E8AF9B227909A3A00140E78 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		2E8AF9B427909B0E00140E78 /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
 		2E9BCEF12768869C009BB180 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		2EA446C4276622460059F045 /* SplashScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SplashScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -55,11 +59,10 @@
 		2E2D79B0276617CD0022EA75 /* Starbucks Redesign */ = {
 			isa = PBXGroup;
 			children = (
+				2E8AF9B127909A0C00140E78 /* Views */,
 				2E9BCEF02768868D009BB180 /* Components */,
 				2E2D79B1276617CD0022EA75 /* Starbucks_RedesignApp.swift */,
 				2E2D79B5276617CE0022EA75 /* Assets.xcassets */,
-				2EA446C4276622460059F045 /* SplashScreen.storyboard */,
-				2E2D79C127661C6B0022EA75 /* LoginScreen.swift */,
 				2E2D79B7276617CE0022EA75 /* Preview Content */,
 			);
 			path = "Starbucks Redesign";
@@ -73,10 +76,21 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		2E8AF9B127909A0C00140E78 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2E2D79C127661C6B0022EA75 /* LoginScreen.swift */,
+				2EA446C4276622460059F045 /* SplashScreen.storyboard */,
+				2E8AF9B227909A3A00140E78 /* HomeView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		2E9BCEF02768868D009BB180 /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				2E9BCEF12768869C009BB180 /* Buttons.swift */,
+				2E8AF9B427909B0E00140E78 /* HomePage.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -152,7 +166,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E8AF9B527909B0E00140E78 /* HomePage.swift in Sources */,
 				2E9BCEF22768869C009BB180 /* Buttons.swift in Sources */,
+				2E8AF9B327909A3A00140E78 /* HomeView.swift in Sources */,
 				2E2D79B2276617CD0022EA75 /* Starbucks_RedesignApp.swift in Sources */,
 				2E2D79C227661C6B0022EA75 /* LoginScreen.swift in Sources */,
 			);

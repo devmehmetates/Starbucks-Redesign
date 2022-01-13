@@ -11,7 +11,7 @@ import SwiftUI
 struct Starbucks_RedesignApp: App {
     var body: some Scene {
         WindowGroup {
-            ComponentsView()
+            HomePage()
         }
     }
 }

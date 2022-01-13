@@ -95,6 +95,20 @@ struct ButtonFilledPlus : View{
     }
 }
 
+struct ButtonFilledThird : View{
+    var body: some View{
+        Button {
+            
+        } label: {
+            Text("Detaylar")
+                .foregroundColor(.black)
+                .padding(.horizontal)
+                .padding(.vertical,12)
+                .background(RoundedRectangle(cornerRadius: 5).foregroundColor(Color("ButtonGrey")))
+        }
+    }
+}
+
 struct ButtonFilledSecond : View{
     var body: some View{
         Button {
@@ -729,6 +743,6 @@ struct ComponentsView : View{
 
 struct Buttons_Previews: PreviewProvider {
     static var previews: some View {
-       ComponentsView()
+       AllButton_View()
     }
 }
