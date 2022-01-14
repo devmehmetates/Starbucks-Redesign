@@ -173,11 +173,26 @@ struct ButtonBordererFull : View{
             
         } label: {
             Text("Button")
-                .frame(width: UIScreen.main.bounds.width * 0.8)
                 .padding(.vertical,12)
                 .overlay(RoundedRectangle(cornerRadius: 5).stroke())
                 .foregroundColor(Color("Primary-A"))
         }
+    }
+}
+struct ButtonFilledFull : View{
+    var body: some View{
+        Button {
+            
+        } label: {
+            Text("Button")
+                .frame(width: UIScreen.main.bounds.width * 0.78)
+                .foregroundColor(.white)
+                .padding(.horizontal)
+                .padding(.vertical,12)
+                .background(RoundedRectangle(cornerRadius: 5).foregroundColor(Color("Primary-A")))
+        }
+        
+        
     }
 }
 
@@ -610,13 +625,13 @@ struct PlusOrLessButton : View{
             if title == "-"{
                 Text(title).foregroundColor(.black)
                     .font(.title)
-                    .frame(width: 35, height: 35, alignment: .center)
+                    .frame(width: 45, height: 45, alignment: .center)
                     .background(Rectangle().cornerRadius(5,corners: [.topLeft,.bottomLeft]))
                 
             }else{
                 Text(title).foregroundColor(.black)
                     .font(.title)
-                    .frame(width: 35, height: 35, alignment: .center)
+                    .frame(width: 45, height: 45, alignment: .center)
                     .background(Rectangle().cornerRadius(5,corners: [.topRight,.bottomRight]))
             }
         }.foregroundColor(Color("ButtonGrey"))
@@ -649,7 +664,7 @@ struct HowMuchCoffee : View{
             
             Text(String(howMuch))
                 .font(.title2)
-                .frame(width: 35, height: 35, alignment: .center)
+                .frame(width: 100, height: 35, alignment: .center)
                 .background(RoundedRectangle(cornerRadius: 0).foregroundColor(Color("ButtonGrey")))
             
             PlusOrLessButton(howMuch: self.$howMuch, title: "+")
